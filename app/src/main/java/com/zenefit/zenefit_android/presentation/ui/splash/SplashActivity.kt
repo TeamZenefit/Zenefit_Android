@@ -1,4 +1,4 @@
-package com.zenefit.zenefit_android
+package com.zenefit.zenefit_android.presentation.ui.splash
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
