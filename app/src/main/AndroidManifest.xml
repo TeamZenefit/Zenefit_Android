@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".presentation.Zenefit"
         android:allowBackup="true"
@@ -38,6 +40,10 @@
         <activity android:name=".presentation.ui.login.LoginActivity"
             android:theme="@style/Theme.Zenefit_Android.Splash"
             android:exported="true" />
+
+        <!-- SIGN UP -->
+        <activity android:name=".presentation.ui.sign_up.SignUpActivity"
+            android:exported="false" />
 
     </application>
 

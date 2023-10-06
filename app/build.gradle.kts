@@ -23,6 +23,7 @@ android {
         versionName = "1.0"
 
         buildConfigField("String", "dev_api", properties.getProperty("dev_api"))
+        buildConfigField ("String", "KAKAO_NATIVE_KEY", properties.getProperty("KAKAO_NATIVE_KEY"))
         manifestPlaceholders["kakao_native_key"] = kakao_native_key
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
