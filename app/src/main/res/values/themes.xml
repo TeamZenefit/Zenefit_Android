@@ -7,6 +7,10 @@
 
     <style name="Theme.Zenefit_Android" parent="Base.Theme.Zenefit_Android" />
 
+    <style name="Theme.Zenefit_Android.Splash" parent="Base.Theme.Zenefit_Android">
+        <item name="android:statusBarColor">@color/primary_normal</item>
+    </style>
+
 
     <style name="font_headline" parent="Widget.MaterialComponents.TextView">
         <item name="fontFamily">@font/pretendard_bold</item>
