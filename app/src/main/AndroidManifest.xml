@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".presentation.Zenefit"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -21,6 +22,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- SPLASH -->
+        <activity android:name=".presentation.ui.splash.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Zenefit_Android.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- LOGIN -->
+        <activity android:name=".presentation.ui.login.LoginActivity"
+            android:theme="@style/Theme.Zenefit_Android.Splash"
+            android:exported="true" />
+
     </application>
 
 </manifest>

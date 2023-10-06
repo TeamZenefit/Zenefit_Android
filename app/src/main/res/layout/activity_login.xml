@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="activity"
+            type="com.zenefit.zenefit_android.presentation.ui.login.LoginActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_login">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logo_login"
+            android:layout_marginTop="125dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/login_tv_social_accounts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login_social_start"
+            android:textAppearance="@style/font_body_2"
+            android:textColor="@color/white"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@id/login_btn_social_kakao"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+        
+        <View
+            android:layout_width="56dp"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toTopOf="@id/login_tv_social_accounts"
+            app:layout_constraintBottom_toBottomOf="@id/login_tv_social_accounts"
+            app:layout_constraintEnd_toStartOf="@id/login_tv_social_accounts" />
+
+        <View
+            android:layout_width="56dp"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_marginStart="8dp"
+            app:layout_constraintTop_toTopOf="@id/login_tv_social_accounts"
+            app:layout_constraintBottom_toBottomOf="@id/login_tv_social_accounts"
+            app:layout_constraintStart_toEndOf="@id/login_tv_social_accounts" />
+
+        <ImageView
+            android:id="@+id/login_btn_social_kakao"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginBottom="93dp"
+            android:src="@drawable/ic_logo_kakao_login"
+            android:onClick="@{() -> activity.onSocialAuthClicked()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
