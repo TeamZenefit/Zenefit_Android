@@ -9,12 +9,15 @@ import com.google.gson.Gson
 import com.zenefit.zenefit_android.data.remote.reqeust.RequestSignInData
 import com.zenefit.zenefit_android.data.remote.response.ResponseSignInData
 import com.zenefit.zenefit_android.domain.repository.AuthRepository
+import com.zenefit.zenefit_android.domain.repository.SharedPreferenceRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val authRepository: AuthRepository): ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val sharedPreferenceRepository: SharedPreferenceRepository,
+    private val authRepository: AuthRepository): ViewModel() {
     private val _loginCode = MutableLiveData<Int>()
     val loginCode : LiveData<Int> = _loginCode
     fun requestSignIn(token : String) {
@@ -22,6 +25,7 @@ class LoginViewModel @Inject constructor(private val authRepository: AuthReposit
             authRepository.requestSignIn(RequestSignInData("KAKAO", token))
                 .onSuccess {
                     _loginCode.value = it.code
+                    saveJwt(it.result.accessToken, it.result.refreshToken)
                 }
                 .onFailure {
                     val result = Gson().fromJson(it.message!!, ResponseSignInData::class.java)
@@ -36,6 +40,12 @@ class LoginViewModel @Inject constructor(private val authRepository: AuthReposit
             viewModelScope.launch {
                 authRepository.saveUserId(data.result.userId)
             }
+        }
+    }
+
+    private fun saveJwt(accessToken : String, refreshToken : String) {
+        viewModelScope.launch {
+            sharedPreferenceRepository.saveAccessToken(accessToken, refreshToken)
         }
     }
 }

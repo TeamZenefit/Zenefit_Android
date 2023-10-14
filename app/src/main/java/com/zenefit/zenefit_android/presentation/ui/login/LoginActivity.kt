@@ -12,6 +12,7 @@ import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.user.UserApiClient
 import com.zenefit.zenefit_android.R
 import com.zenefit.zenefit_android.databinding.ActivityLoginBinding
+import com.zenefit.zenefit_android.presentation.ui.find_policy.FindPolicyActivity
 import com.zenefit.zenefit_android.presentation.ui.login.viewmodel.LoginViewModel
 import com.zenefit.zenefit_android.presentation.ui.sign_up.SignUpActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -68,6 +69,9 @@ class LoginActivity : AppCompatActivity() {
             when(it) {
                 2001, 2005 -> {
                     startActivity(Intent(this, SignUpActivity::class.java))
+                }
+                else -> {
+                    startActivity(Intent(this, FindPolicyActivity::class.java))
                 }
             }
         }

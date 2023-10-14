@@ -9,4 +9,20 @@
 
     <!-- 회원가입 -->
     <string name="sign_up_earn_ten_thousand">만원</string>
+
+    <!-- 복지정책 찾기 -->
+    <string name="find_policy_title">당신만을 위한\n복지 정책을 찾고 있어요…</string>
+    <string name="find_policy_sub_title">금방 찾아드릴게요!</string>
+    <string name="find_policy_title_after_3sec">당신만을 위한\n복지 정책을 준비하고 있습니다</string>
+    <string name="find_policy_sub_title_after_3sec">잠시만 기다려주세요!</string>
+
+    <string name="result_policy_title_when_available">%s님이 신청할 수 있는\n정책을 %d가지 찾았어요!</string>
+    <string name="result_policy_sub_title_when_available">%s님이 받을 수 있는 금액도\n모두 계산이 끝났어요</string>
+    <string name="result_policy_btn_when_available">모두 확인하기</string>
+
+    <string name="result_policy_title_when_empty">%s님이 신청할 수 있는\n정책을 못 찾았어요..</string>
+    <string name="result_policy_sub_title_when_empty">조건을 다시 설정하고 신청해보세요..</string>
+    <string name="result_policy_btn_when_empty">다시 찾아보기</string>
+
+
 </resources>

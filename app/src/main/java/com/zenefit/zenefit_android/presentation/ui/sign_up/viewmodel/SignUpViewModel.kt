@@ -161,7 +161,8 @@ class SignUpViewModel @Inject constructor(
                 selectedCity.value ?: "",
                 (userEarn.value + "0000").toInt(),
                 selectedGraduation.value ?: "",
-                selectedJob.value ?: listOf()
+                selectedJob.value ?: listOf(),
+                termsStateList.value?.count {it.selected } == 3
             ))
                 .onSuccess {
                     saveJwt(it.result.accessToken, it.result.refreshToken)

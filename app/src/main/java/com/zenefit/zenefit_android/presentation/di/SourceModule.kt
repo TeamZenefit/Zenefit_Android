@@ -1,8 +1,10 @@
 package com.zenefit.zenefit_android.presentation.di
 
 import com.zenefit.zenefit_android.data.remote.source.AuthRemoteSource
+import com.zenefit.zenefit_android.data.remote.source.PolicyRemoteSource
 import com.zenefit.zenefit_android.data.remote.source.UserRemoteSource
 import com.zenefit.zenefit_android.domain.source.AuthSource
+import com.zenefit.zenefit_android.domain.source.PolicySource
 import com.zenefit.zenefit_android.domain.source.UserSource
 import dagger.Binds
 import dagger.Module
@@ -18,4 +20,7 @@ abstract class SourceModule {
 
     @Binds
     abstract fun bindUserRemoteSource(userRemoteSource: UserRemoteSource) : UserSource
+
+    @Binds
+    abstract fun bindPolicyRemoteSource(policyRemoteSource: PolicyRemoteSource) : PolicySource
 }
