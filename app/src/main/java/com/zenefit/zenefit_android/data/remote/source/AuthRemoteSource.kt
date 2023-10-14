@@ -1,6 +1,6 @@
 package com.zenefit.zenefit_android.data.remote.source
 
-import com.zenefit.zenefit_android.presentation.util.ErrorConverter.convertAndGetCode
+import com.zenefit.zenefit_android.presentation.util.ErrorConverter.convertError
 import com.zenefit.zenefit_android.data.remote.reqeust.RequestSignInData
 import com.zenefit.zenefit_android.data.remote.response.ResponseSignInData
 import com.zenefit.zenefit_android.data.remote.service.AuthService
@@ -12,7 +12,7 @@ class AuthRemoteSource @Inject constructor(private val service : AuthService): A
         val res = service.requestSignIn(body)
         return when(res.code()) {
             in 200..399 -> Result.success(res.body()!!)
-            else -> Result.failure(IllegalArgumentException(res.errorBody()?.convertAndGetCode().toString()))
+            else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.zenefit.zenefit_android.presentation.di
 
 import com.zenefit.zenefit_android.data.remote.service.AuthService
+import com.zenefit.zenefit_android.data.remote.service.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,4 +17,7 @@ class ServiceModule {
     @Singleton
     fun provideAuthService(retrofit : Retrofit) : AuthService = retrofit.create(AuthService::class.java)
 
+    @Provides
+    @Singleton
+    fun provideUserService(retrofit: Retrofit) : UserService = retrofit.create(UserService::class.java)
 }

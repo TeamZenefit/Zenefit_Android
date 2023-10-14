@@ -6,4 +6,6 @@ import com.zenefit.zenefit_android.data.remote.response.ResponseSignInData
 interface AuthRepository {
 
     suspend fun requestSignIn(body : RequestSignInData) : Result<ResponseSignInData>
+
+    suspend fun saveUserId(userId : String)
 }

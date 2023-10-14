@@ -6,6 +6,7 @@ data class ResponseSignInData(
     val result: ResultSignInData
 ) : BaseResponse() {
     data class ResultSignInData(
+        val userId : String,
         val accessToken: String,
         val refreshToken: String
     )

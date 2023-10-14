@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_component_bottom_sheet">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="1:0.8"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <ImageView
+                android:id="@+id/component_bottom_one_choice_btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_close"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/component_bottom_one_choice_tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:textAppearance="@style/font_label_1"
+                android:textColor="@color/text_strong"
+                app:layout_constraintEnd_toStartOf="@id/component_bottom_one_choice_btn_close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/component_bottom_one_choice_btn_close" />
+
+            <TextView
+                android:id="@+id/component_bottom_one_choice_tv_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중복선택 할 수 없습니다"
+                android:textAppearance="@style/font_chips"
+                android:textColor="@color/status_alert"
+                app:layout_constraintStart_toStartOf="@id/component_bottom_one_choice_tv_title"
+                app:layout_constraintTop_toBottomOf="@id/component_bottom_one_choice_tv_title" />
+
+            <View
+                android:id="@+id/component_bottom_one_choice_view_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/line_normal"
+                app:layout_constraintEnd_toEndOf="@id/component_bottom_one_choice_btn_close"
+                app:layout_constraintStart_toStartOf="@id/component_bottom_one_choice_tv_title"
+                app:layout_constraintTop_toBottomOf="@id/component_bottom_one_choice_tv_notice" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/component_bottom_one_choice_rv_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:paddingTop="6dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constrainedHeight="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/component_bottom_one_choice_view_divider" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
