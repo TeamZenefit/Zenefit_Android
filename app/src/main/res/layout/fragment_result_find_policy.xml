@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="fragment"
+            type="com.zenefit.zenefit_android.presentation.ui.find_policy.result.ResultFindPolicyFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.zenefit.zenefit_android.presentation.ui.find_policy.viewmodel.FindPolicyViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/fg_result_find_policy_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{viewModel.findPolicyResult.policyCnt == 0 ? @string/result_policy_title_when_empty(viewModel.findPolicyResult.nickname) : @string/result_policy_title_when_available(viewModel.findPolicyResult.nickname, viewModel.findPolicyResult.policyCnt)}"
+            android:textAppearance="@style/font_title_1"
+            android:textColor="@color/text_strong"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fg_result_find_policy_tv_sub_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text='@{viewModel.findPolicyResult.policyCnt == 0 ? @string/result_policy_sub_title_when_empty : @string/result_policy_sub_title_when_available(viewModel.findPolicyResult.nickname)}'
+            android:textAppearance="@style/font_body_1"
+            android:textColor="@color/text_alternative"
+            app:layout_constraintStart_toStartOf="@id/fg_result_find_policy_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/fg_result_find_policy_tv_title" />
+
+
+        <ImageView
+            android:id="@+id/fg_result_find_policy_iv_icon"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:src='@{viewModel.findPolicyResult.policyCnt == 0 ? @drawable/ic_find_policy_empty_box : @drawable/ic_find_policy_fill_box}'
+            app:layout_constraintVertical_bias="0.4"
+            app:layout_constraintBottom_toTopOf="@id/fg_result_find_policy_btn_finish"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_result_find_policy_tv_sub_title" />
+
+        <TextView
+            android:id="@+id/fg_result_find_policy_btn_finish"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="40dp"
+            android:background='@{viewModel.findPolicyResult.policyCnt == 0 ? @drawable/bg_primary_normal_8 : @drawable/bg_primary_assistive_8}'
+            android:gravity="center"
+            android:paddingVertical="12dp"
+            android:text='@{viewModel.findPolicyResult.policyCnt == 0 ? @string/result_policy_btn_when_empty : @string/result_policy_btn_when_available}'
+            android:textAppearance="@style/font_label_3"
+            android:textColor='@{viewModel.findPolicyResult.policyCnt == 0 ? @color/white : @color/primary_normal}'
+            android:onClick="@{() -> fragment.validateMove(viewModel.findPolicyResult.policyCnt)}"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

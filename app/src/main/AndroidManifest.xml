@@ -41,6 +41,10 @@
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>
 
+        <!-- FIND POLICY -->
+        <activity android:name=".presentation.ui.find_policy.FindPolicyActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

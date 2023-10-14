@@ -7,5 +7,6 @@ data class RequestSignUpData(
     val cityCode : String,
     val lastYearIncome : Int,
     val educationType : String,
-    val jobs : List<String>
+    val jobs : List<String>,
+    val marketingStatus : Boolean
 )
