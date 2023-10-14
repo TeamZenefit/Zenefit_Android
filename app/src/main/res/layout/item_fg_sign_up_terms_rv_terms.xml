@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="terms"
+            type="com.zenefit.zenefit_android.data.data.Terms" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/item_fg_sign_up_terms_rv_terms_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:background="@android:color/transparent"
+            android:button="@android:color/transparent"
+            android:drawableStart="@drawable/selector_terms_checkbox"
+            android:drawablePadding="12dp"
+            android:text="@{terms.text}"
+            android:checked="@={terms.selected}"
+            tools:text="이용 약관"
+            android:textAppearance="@style/font_label_3"
+            android:textColor="@color/text_normal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+            android:id="@+id/item_fg_sign_up_terms_rv_terms_iv_see_terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_chevron_right"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="약관 보기"
+            android:textAppearance="@style/font_chips"
+            android:textColor="@color/text_assistive"
+            app:layout_constraintTop_toTopOf="@id/item_fg_sign_up_terms_rv_terms_iv_see_terms"
+            app:layout_constraintBottom_toBottomOf="@id/item_fg_sign_up_terms_rv_terms_iv_see_terms"
+            app:layout_constraintEnd_toStartOf="@id/item_fg_sign_up_terms_rv_terms_iv_see_terms" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

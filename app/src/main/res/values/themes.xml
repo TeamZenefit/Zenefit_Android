@@ -11,6 +11,8 @@
 
     <style name="Theme.Zenefit_Android.Splash" parent="Base.Theme.Zenefit_Android">
         <item name="android:statusBarColor">@color/primary_normal</item>
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+        <item name="android:navigationBarColor">@color/primary_normal</item>
     </style>
 
 

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="fragment"
+            type="com.zenefit.zenefit_android.presentation.ui.sign_up.terms.SignUpTermsFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.zenefit.zenefit_android.presentation.ui.sign_up.viewmodel.SignUpViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:clickable="true">
+
+        <CheckBox
+            android:id="@+id/fg_sign_up_terms_check_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@android:color/transparent"
+            android:button="@android:color/transparent"
+            android:drawableStart="@drawable/selector_terms_checkbox"
+            android:drawablePadding="12dp"
+            android:text="약관 전체동의"
+            android:checked="@{viewModel.allCheckedState}"
+            android:onClick="@{() -> fragment.onAllTermsClicked()}"
+            android:textAppearance="@style/font_label_3"
+            android:textColor="@color/text_normal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/fg_sign_up_terms_view_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/line_normal"
+            app:layout_constraintTop_toBottomOf="@id/fg_sign_up_terms_check_all" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fg_sign_up_terms_rv_terms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@id/fg_sign_up_terms_view_divider"
+            tools:listitem="@layout/item_fg_sign_up_terms_rv_terms"/>
+
+
+        <TextView
+            android:id="@+id/fg_sign_up_terms_btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/btn_selector_save"
+            android:enabled="@{viewModel.termsSaveButtonEnabled}"
+            android:gravity="center"
+            android:onClick="@{() -> fragment.onFinishSignUpClicked()}"
+            android:paddingVertical="12dp"
+            android:text="@string/common_okay"
+            android:textAppearance="@style/font_label_1"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

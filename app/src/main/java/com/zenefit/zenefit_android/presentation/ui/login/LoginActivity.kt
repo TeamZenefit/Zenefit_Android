@@ -30,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun initBinding() {
         binding.activity = this
+        binding.lifecycleOwner = this
     }
 
     private fun initObserve() {
@@ -65,7 +66,9 @@ class LoginActivity : AppCompatActivity() {
     private fun observeLoginCode() {
         viewModel.loginCode.observe(this) {
             when(it) {
-                2001, 2005 -> startActivity(Intent(this, SignUpActivity::class.java))
+                2001, 2005 -> {
+                    startActivity(Intent(this, SignUpActivity::class.java))
+                }
             }
         }
     }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.zenefit.zenefit_android.presentation.ui.sign_up.viewmodel.SignUpViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <com.zenefit.zenefit_android.presentation.component.ComponentTextView
+            android:id="@+id/fg_sign_up_info_component_graduation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="@{viewModel.currentSignUpLevel > 2 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toStartOf="@id/fg_sign_up_info_component_job"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.zenefit.zenefit_android.presentation.component.ComponentTextView
+            android:id="@+id/fg_sign_up_info_component_job"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="@{viewModel.currentSignUpLevel > 2 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fg_sign_up_info_component_graduation"
+            app:layout_constraintTop_toTopOf="@id/fg_sign_up_info_component_graduation" />
+
+        <com.zenefit.zenefit_android.presentation.component.ComponentEditText
+            android:id="@+id/fg_sign_up_info_component_earn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:visibility="@{viewModel.currentSignUpLevel > 1 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/fg_sign_up_info_component_graduation" />
+
+        <com.zenefit.zenefit_android.presentation.component.ComponentEditText
+            android:id="@+id/fg_sign_up_info_component_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintTop_toBottomOf="@id/fg_sign_up_info_component_earn" />
+
+        <com.zenefit.zenefit_android.presentation.component.ComponentTextView
+            android:id="@+id/fg_sign_up_info_component_city"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@id/fg_sign_up_info_component_address"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_sign_up_info_component_age" />
+
+        <com.zenefit.zenefit_android.presentation.component.ComponentTextView
+            android:id="@+id/fg_sign_up_info_component_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fg_sign_up_info_component_city"
+            app:layout_constraintTop_toTopOf="@id/fg_sign_up_info_component_city" />
+
+        <TextView
+            android:id="@+id/fg_sign_up_info_btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/btn_selector_save"
+            android:enabled="@{viewModel.saveButtonEnabled}"
+            android:gravity="center"
+            android:onClick="@{() -> viewModel.changeLevel()}"
+            android:paddingVertical="12dp"
+            android:text="@string/common_finish"
+            android:textAppearance="@style/font_label_1"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

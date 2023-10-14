@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">Zenefit_Android</string>
 
+    <string name="common_finish">완료</string>
+    <string name="common_okay">확인</string>
+
     <!-- 로그인 -->
     <string name="login_social_start">SNS 계정으로 간단하게 시작하기</string>
+
+    <!-- 회원가입 -->
+    <string name="sign_up_earn_ten_thousand">만원</string>
 </resources>
