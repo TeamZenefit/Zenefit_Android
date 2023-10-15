@@ -38,7 +38,6 @@ class FindPolicyFragment : Fragment() {
     }
 
     private fun initUi() {
-        initAnimation()
         initTextWhenAfter3Sec()
     }
 
@@ -46,15 +45,6 @@ class FindPolicyFragment : Fragment() {
         viewModel.findPolicyResult.observe(viewLifecycleOwner) {
             (requireActivity() as FindPolicyActivity).openResultFragment()
         }
-    }
-
-    private fun initAnimation() {
-        binding.fgFindPolicyIvBox.startAnimation(
-            AnimationUtils.loadAnimation(
-                requireActivity(),
-                R.anim.find_policy_box_anim
-            )
-        )
     }
 
     private fun initTextWhenAfter3Sec() {

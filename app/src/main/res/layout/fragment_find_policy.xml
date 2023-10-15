@@ -29,13 +29,15 @@
             app:layout_constraintStart_toStartOf="@id/fg_find_policy_tv_title" />
 
 
-        <ImageView
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/fg_find_policy_iv_box"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_find_policy_closed_box"
-            app:layout_constraintVertical_bias="0.4"
-            app:layout_constraintTop_toBottomOf="@id/fg_find_policy_tv_sub_title"
+            app:lottie_autoPlay="true"
+            app:lottie_rawRes="@raw/gift"
+            app:lottie_loop="true"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
