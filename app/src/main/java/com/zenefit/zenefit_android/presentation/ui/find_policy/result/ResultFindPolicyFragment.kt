@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.zenefit.zenefit_android.MainActivity
+import com.zenefit.zenefit_android.presentation.ui.main.MainActivity
 import com.zenefit.zenefit_android.R
 import com.zenefit.zenefit_android.databinding.FragmentResultFindPolicyBinding
 import com.zenefit.zenefit_android.presentation.ui.find_policy.viewmodel.FindPolicyViewModel

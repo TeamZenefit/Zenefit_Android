@@ -24,5 +24,16 @@
     <string name="result_policy_sub_title_when_empty">조건을 다시 설정하고 신청해보세요..</string>
     <string name="result_policy_btn_when_empty">다시 찾아보기</string>
 
+    <!-- 매뉴얼 -->
+    <string name="manual_first_title">지금 받을 수 있는 혜택 중에\n가장 좋은 혜택을 찾으세요!</string>
+    <string name="manual_second_title">찾아주는 나의 정책</string>
+    <string name="manual_second_sub_title">입력한 개인정보로 신청가능 여부를 판단해주고\n예상 수혜 금액이 높은 정책을 먼저 추천드려요!</string>
+    <string name="manual_third_title">관심 있는 정책 신청 관리</string>
+    <string name="manual_third_sub_title">달력에서 신청 시작일과 마감일을 보여드려요\nD-day를 설정하면 Push 알림을 보내드려요!</string>
+    <string name="manual_fourth_title">나의 유형과 개인 설정</string>
+    <string name="manual_fourth_sub_title">나는 혜택을 잘 챙기고 있는지 유형으로 알려줘요!\n개인정보를 추가하면 더 많은 정책을 추천드려요</string>
+    <string name="manual_fifth_title">수혜중인 정책 관리</string>
+    <string name="manual_fifth_sub_title">이미 수혜중이거나 신청을 완료한 정책은\n체크표시를 눌러 따로 모아 보세요!</string>
+
 
 </resources>
