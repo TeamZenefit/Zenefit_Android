@@ -2,7 +2,6 @@ package com.zenefit.zenefit_android.presentation.ui.sign_up.terms
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.zenefit.zenefit_android.MainActivity
+import com.zenefit.zenefit_android.presentation.ui.main.MainActivity
 import com.zenefit.zenefit_android.R
 import com.zenefit.zenefit_android.databinding.FragmentSignUpTermsBinding
 import com.zenefit.zenefit_android.presentation.ui.sign_up.terms.adapter.SignUpTermsAdapter
