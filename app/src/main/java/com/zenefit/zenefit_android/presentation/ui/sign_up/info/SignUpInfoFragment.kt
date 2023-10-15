@@ -1,10 +1,15 @@
 package com.zenefit.zenefit_android.presentation.ui.sign_up.info
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowId.FocusObserver
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -19,6 +24,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class SignUpInfoFragment : Fragment() {
     private lateinit var binding: FragmentSignUpInfoBinding
     private val viewModel: SignUpViewModel by activityViewModels()
+
+    private lateinit var imm : InputMethodManager
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,6 +36,7 @@ class SignUpInfoFragment : Fragment() {
 
         initBinding()
         initComponents()
+        initInputMethodManager()
         initFocus()
         initObserve()
 
@@ -56,9 +64,25 @@ class SignUpInfoFragment : Fragment() {
         binding.fgSignUpInfoComponentJob.initComponent("JOB", ::onClickItems)
     }
 
+    private fun initInputMethodManager() {
+        imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    }
+
     private fun initFocus() {
         /** 실행 초기 Age에 Focus 부여 **/
         binding.fgSignUpInfoComponentAge.setFocus()
+
+        binding.root.viewTreeObserver.addOnGlobalFocusChangeListener { view, view2 ->
+            if(view2.javaClass.toString().contains("Edit")) showKeyBoard(view2)  else hideKeyBoard(view2)
+        }
+    }
+
+    private fun showKeyBoard(view : View) {
+        imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
+    }
+
+    private fun hideKeyBoard(view : View) {
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun initObserve() {
@@ -179,10 +203,6 @@ class SignUpInfoFragment : Fragment() {
                 !viewModel.selectedGraduation.value.isNullOrEmpty(),
                 !viewModel.selectedJob.value.isNullOrEmpty()
             ).count { it })
-    }
-
-    private fun View.setFocus() {
-        this.setFocus()
     }
 
     /** Dummy **/
