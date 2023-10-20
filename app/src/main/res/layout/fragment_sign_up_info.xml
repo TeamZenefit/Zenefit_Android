@@ -7,6 +7,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="fragment"
+            type="com.zenefit.zenefit_android.presentation.ui.sign_up.info.SignUpInfoFragment" />
+
+        <variable
             name="viewModel"
             type="com.zenefit.zenefit_android.presentation.ui.sign_up.viewmodel.SignUpViewModel" />
     </data>
@@ -82,7 +86,7 @@
             android:background="@drawable/btn_selector_save"
             android:enabled="@{viewModel.saveButtonEnabled}"
             android:gravity="center"
-            android:onClick="@{() -> viewModel.changeLevel()}"
+            android:onClick="@{() -> fragment.onSaveClick()}"
             android:paddingVertical="12dp"
             android:text="@string/common_finish"
             android:textAppearance="@style/font_label_1"

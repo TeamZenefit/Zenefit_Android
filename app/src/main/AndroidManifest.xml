@@ -41,6 +41,10 @@
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>
 
+        <!-- SIGN UP RESULT -->
+        <activity android:name=".presentation.ui.sign_up.result.SignUpResultActivity"
+            android:exported="false" />
+
         <!-- FIND POLICY -->
         <activity android:name=".presentation.ui.find_policy.FindPolicyActivity"
             android:exported="false" />

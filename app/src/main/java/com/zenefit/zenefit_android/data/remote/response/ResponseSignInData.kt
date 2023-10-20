@@ -8,6 +8,7 @@ data class ResponseSignInData(
     data class ResultSignInData(
         val userId : String,
         val accessToken: String,
-        val refreshToken: String
+        val refreshToken: String,
+        val nickname : String
     )
 }
