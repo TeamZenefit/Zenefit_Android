@@ -43,26 +43,28 @@ class ComponentTextView(context: Context, attrs: AttributeSet) : ConstraintLayou
 
     private fun initUi(onClick: (String) -> Unit) {
         validateWithType()
-        validateFocus()
-        setClickEvent(onClick)
+        validateFocus(onClick)
+        setClickEvent()
         binding.root.isFocusableInTouchMode = true
     }
 
-    private fun setClickEvent(onClick: (String) -> Unit) {
+    private fun setClickEvent() {
         binding.root.setOnTouchListener { _, motionEvent ->
             performClick()
             if (motionEvent.action == MotionEvent.ACTION_DOWN) {
                 binding.root.requestFocus()
-                onClick.invoke(type)
             }
 
             return@setOnTouchListener true
         }
     }
 
-    private fun validateFocus() {
+    private fun validateFocus(onClick: (String) -> Unit) {
         binding.root.setOnFocusChangeListener { _, b ->
-            if (b) setWithFocus() else setWithoutFocus()
+            if (b) {
+                setWithFocus()
+                onClick.invoke(type)
+            } else setWithoutFocus()
         }
 
         binding.componentTextTvContent.addTextChangedListener {

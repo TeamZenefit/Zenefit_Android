@@ -1,10 +1,17 @@
 package com.zenefit.zenefit_android.presentation.ui.sign_up.info
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
+import android.view.ViewTreeObserver.OnGlobalFocusChangeListener
+import android.view.WindowId.FocusObserver
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -19,6 +26,12 @@ import dagger.hilt.android.AndroidEntryPoint
 class SignUpInfoFragment : Fragment() {
     private lateinit var binding: FragmentSignUpInfoBinding
     private val viewModel: SignUpViewModel by activityViewModels()
+
+    private lateinit var imm : InputMethodManager
+
+    private val observeListener by lazy {
+        OnGlobalFocusChangeListener { p0, p1 -> p1?.let { if(p1.javaClass.toString().contains("Edit")) showKeyBoard(p1)  else hideKeyBoard(p1) } }
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,6 +42,7 @@ class SignUpInfoFragment : Fragment() {
 
         initBinding()
         initComponents()
+        initInputMethodManager()
         initFocus()
         initObserve()
 
@@ -36,6 +50,7 @@ class SignUpInfoFragment : Fragment() {
     }
 
     private fun initBinding() {
+        binding.fragment = this
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
     }
@@ -48,17 +63,34 @@ class SignUpInfoFragment : Fragment() {
         binding.fgSignUpInfoComponentCity.initComponent("AREA", ::onClickItems)
         binding.fgSignUpInfoComponentAddress.initComponent("CITY", ::onClickItems)
 
-        binding.fgSignUpInfoComponentEarn.apply {
-            initComponent("EARN")
-            setTextWatcher(::observeEarn)
-        }
+        binding.fgSignUpInfoComponentEarn.apply { initComponent("EARN") }
+
         binding.fgSignUpInfoComponentGraduation.initComponent("GRADUATION", ::onClickItems)
         binding.fgSignUpInfoComponentJob.initComponent("JOB", ::onClickItems)
+    }
+
+    private fun initInputMethodManager() {
+        imm = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.e("----", "onResume: ", )
     }
 
     private fun initFocus() {
         /** 실행 초기 Age에 Focus 부여 **/
         binding.fgSignUpInfoComponentAge.setFocus()
+
+        binding.root.viewTreeObserver.addOnGlobalFocusChangeListener(observeListener)
+    }
+
+    private fun showKeyBoard(view : View) {
+        imm.showSoftInput(view, 0)
+    }
+
+    private fun hideKeyBoard(view : View) {
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
     private fun initObserve() {
@@ -93,6 +125,8 @@ class SignUpInfoFragment : Fragment() {
             checkLevelPass()
 
             viewModel.initSelectedCity()
+
+            viewModel.checkFocusLocation("AREA", !it.equals("시/도")).requestFocus()
         }
     }
 
@@ -100,23 +134,31 @@ class SignUpInfoFragment : Fragment() {
         viewModel.selectedCity.observe(viewLifecycleOwner) {
             binding.fgSignUpInfoComponentAddress.setSelectedText(it)
             checkLevelPass()
+
+            viewModel.checkFocusLocation("CITY", !it.equals("시/군/구") && !it.isNullOrEmpty()).requestFocus()
         }
     }
 
     private fun observeAge(age : String) {
         viewModel.setUserAge(age)
         checkLevelPass()
+
+        viewModel.checkFocusLocation("AGE", age.length == 2).requestFocus()
     }
 
     private fun observeEarn(earn : String) {
         viewModel.setUserEarn(earn)
         checkLevelPass()
+
+        if(viewModel.currentSignUpLevel.value!! > 2) viewModel.checkFocusLocation("EARN", earn.isNotEmpty()).requestFocus()
     }
 
     private fun observeGraduation() {
         viewModel.selectedGraduation.observe(viewLifecycleOwner) {
             binding.fgSignUpInfoComponentGraduation.setSelectedText(it)
             checkLevelPass()
+
+            viewModel.checkFocusLocation("GRADUATION", !it.equals("학력")).requestFocus()
         }
     }
 
@@ -126,6 +168,8 @@ class SignUpInfoFragment : Fragment() {
             else binding.fgSignUpInfoComponentJob.setSelectedText("${it[0]} 외 ${it.size - 1}개")
 
             checkLevelPass()
+
+            viewModel.checkFocusLocation("JOB", !it.equals("직업")).requestFocus()
         }
     }
 
@@ -181,8 +225,32 @@ class SignUpInfoFragment : Fragment() {
             ).count { it })
     }
 
-    private fun View.setFocus() {
-        this.setFocus()
+    private fun Int.requestFocus() {
+        when(this) {
+            0 -> binding.fgSignUpInfoComponentAge.setFocus()
+            1 -> binding.fgSignUpInfoComponentCity.requestFocus()
+            2 -> binding.fgSignUpInfoComponentAddress.requestFocus()
+            3 -> binding.fgSignUpInfoComponentEarn.requestFocus()
+            4 -> binding.fgSignUpInfoComponentGraduation.requestFocus()
+            5 -> binding.fgSignUpInfoComponentJob.requestFocus()
+        }
+    }
+
+    fun onSaveClick() {
+        binding.fgSignUpInfoBtnSave.requestFocus()
+        viewModel.changeLevel()
+        when(viewModel.currentSignUpLevel.value) {
+            2 -> {
+                binding.fgSignUpInfoComponentEarn.setTextWatcher(::observeEarn)
+                viewModel.checkFocusLocation("EARN", !viewModel.userEarn.value.isNullOrEmpty()).requestFocus()
+            }
+            3 -> binding.fgSignUpInfoComponentGraduation.requestFocus()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        binding.root.viewTreeObserver.removeOnGlobalFocusChangeListener(observeListener)
     }
 
     /** Dummy **/

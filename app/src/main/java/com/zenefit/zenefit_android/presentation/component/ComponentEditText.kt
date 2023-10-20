@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.text.isDigitsOnly
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import com.zenefit.zenefit_android.R
@@ -38,7 +39,11 @@ class ComponentEditText(context : Context, attrs : AttributeSet) : ConstraintLay
             } catch (exception : Exception) {
                 exception.stackTrace
             }
-            onTextChanged.invoke(if(type == "EARN") earnText else it.toString())
+
+            earnText = (if(it.toString().isDigitsOnly()) it.toString() else it.toString().convertToNumber())
+            seenEarnText = if(earnText.isNotEmpty()) earnText.convertToWon() else "0"
+
+            onTextChanged.invoke(if(type == "EARN") if(earnText == "") "0" else earnText else it.toString())
         }
     }
     private fun initBinding() {
@@ -99,8 +104,6 @@ class ComponentEditText(context : Context, attrs : AttributeSet) : ConstraintLay
         }
 
         if(type == "EARN") binding.componentEditEdtContent.apply {
-            earnText = text.toString()
-            seenEarnText = text.toString().convertToWon()
             setText(seenEarnText)
         }
     }
@@ -109,6 +112,14 @@ class ComponentEditText(context : Context, attrs : AttributeSet) : ConstraintLay
         val overTenThousand = this.toInt() / 10000
         val tenThousand = this.toInt() % 10000
         return if(length > 4) "${overTenThousand}억 ${if(tenThousand != 0) tenThousand else ""}" else this
+    }
+
+    private fun String.convertToNumber() : String {
+        var overTenThousand = this.split("억 ")[0]
+        var tenThousand = this.split("억 ")[1]
+        overTenThousand = "0".repeat((4 - overTenThousand.length)) + overTenThousand
+        tenThousand = "0".repeat((4 - tenThousand.length)) + tenThousand
+        return (overTenThousand).toInt().toString() + tenThousand
     }
 
     fun returnFinishState() : Boolean {

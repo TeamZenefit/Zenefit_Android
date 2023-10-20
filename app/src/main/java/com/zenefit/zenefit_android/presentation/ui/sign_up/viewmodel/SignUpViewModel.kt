@@ -53,6 +53,9 @@ class SignUpViewModel @Inject constructor(
     private val _selectedJob = MutableLiveData<MutableList<String>>()
     val selectedJob : LiveData<MutableList<String>> = _selectedJob
 
+    private val _focusRoute = mutableListOf<Boolean>().apply { for(i in 0 until 6) add(false) }
+    val focusRoute : MutableList<Boolean> = _focusRoute
+
     private val _allCheckedState = MutableLiveData<Boolean>(false)
     val allCheckedState : LiveData<Boolean> = _allCheckedState
 
@@ -82,7 +85,6 @@ class SignUpViewModel @Inject constructor(
 
     fun setTextByLevel() {
         val level = currentSignUpLevel.value!!
-        _currentSignUpLevelText.value = getCurrentLevelText[level.minus(1)]
         _signUpTitleText.value = getCurrentTitleText[level.minus(1)]
     }
 
@@ -132,6 +134,11 @@ class SignUpViewModel @Inject constructor(
         _selectedCity.value = ""
     }
 
+    fun checkFocusLocation(viewTitle : String, isFilled : Boolean) : Int {
+        _focusRoute[convertViewPosition(viewTitle)] = isFilled
+        return _focusRoute.indexOf(false)
+    }
+
     fun onAllTermsClicked(status : Boolean) {
         for (i in 0 until termsStateList.value!!.size) {
             _termsStateList.value!![i] = termsStateList.value!![i].also { it.selected = status }
@@ -159,18 +166,19 @@ class SignUpViewModel @Inject constructor(
                 userAge.value?.toInt() ?: 0,
                 selectedArea.value ?: "",
                 selectedCity.value ?: "",
-                (userEarn.value + "0000").toInt(),
+                (userEarn.value + "0000").trim().toDouble(),
                 selectedGraduation.value ?: "",
                 selectedJob.value ?: listOf(),
                 termsStateList.value?.count {it.selected } == 3
             ))
                 .onSuccess {
                     saveJwt(it.result.accessToken, it.result.refreshToken)
-                    _signUpResultMessage.value = "SUCCESS"
+                    _signUpResultMessage.value = "SUCCESS" + it.result.nickname
                 }
                 .onFailure {
                     val result = Gson().fromJson(it.message!!, ResponseSignInData::class.java)
-                    _signUpResultMessage.value = result.message!!
+                    Log.e("----", "requestSignUp: $result", )
+                    //_signUpResultMessage.value
                 }
         }
     }
@@ -182,6 +190,7 @@ class SignUpViewModel @Inject constructor(
     }
 
 
+    private fun convertViewPosition(content : String) : Int = listOf("AGE", "AREA", "CITY", "EARN", "GRADUATION", "JOB").indexOf(content)
     private val getCurrentLevelText = listOf("기본 정보", "소득 기재", "상세 정보", "약관 동의")
     private val getCurrentTitleText = listOf("나이와 사는 곳을 알려주세요!", "소득을 알려주세요!", "학력과 직업을 입력해주세요", "회원님의 약관동의가 필요해요")
     private fun getTermsData() = mutableListOf(Terms("이용 약관", true, false), Terms("개인정보 처리방침", true, false), Terms("마케팅 정보 수신 동의 (선택)", false, false))

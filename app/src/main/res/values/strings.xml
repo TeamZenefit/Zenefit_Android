@@ -9,6 +9,9 @@
 
     <!-- 회원가입 -->
     <string name="sign_up_earn_ten_thousand">만원</string>
+    <string name="sign_up_success">회원가입 완료</string>
+    <string name="sign_up_welcome">회원가입을 환영합니다</string>
+    <string name="sign_up_welcome_nickname">%s님!</string>
 
     <!-- 복지정책 찾기 -->
     <string name="find_policy_title">당신만을 위한\n복지 정책을 찾고 있어요…</string>

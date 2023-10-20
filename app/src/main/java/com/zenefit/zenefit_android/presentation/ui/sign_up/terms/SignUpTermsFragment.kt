@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import com.zenefit.zenefit_android.presentation.ui.main.MainActivity
 import com.zenefit.zenefit_android.R
 import com.zenefit.zenefit_android.databinding.FragmentSignUpTermsBinding
+import com.zenefit.zenefit_android.presentation.ui.sign_up.result.SignUpResultActivity
 import com.zenefit.zenefit_android.presentation.ui.sign_up.terms.adapter.SignUpTermsAdapter
 import com.zenefit.zenefit_android.presentation.ui.sign_up.viewmodel.SignUpViewModel
 
@@ -74,7 +75,7 @@ class SignUpTermsFragment : Fragment() {
 
     private fun observeSignUpResult() {
         viewModel.signUpResultMessage.observe(viewLifecycleOwner) {
-            if(it == "SUCCESS") startActivity(Intent(requireActivity(), MainActivity::class.java)).apply { requireActivity().finish() }
+            if(it.contains("SUCCESS")) startActivity(Intent(requireActivity(), SignUpResultActivity::class.java).setType(it.replace("SUCCESS", ""))).apply { requireActivity().finish() }
             else Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
         }
     }
