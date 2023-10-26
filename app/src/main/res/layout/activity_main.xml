@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="activity"
             type="com.zenefit.zenefit_android.presentation.ui.main.MainActivity" />
@@ -15,6 +15,7 @@
         android:background="@color/background_primary">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main_layout_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?actionBarSize"
             app:layout_constraintTop_toTopOf="parent">
@@ -31,14 +32,26 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
+        <FrameLayout
+            android:id="@+id/main_layout_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/main_layout_bnv"
+            app:layout_constraintTop_toBottomOf="@id/main_layout_toolbar" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/main_layout_bnv"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:background="@color/background_primary"
+            app:backgroundTint="@android:color/transparent"
+            app:itemActiveIndicatorStyle="@android:color/transparent"
+            app:itemBackground="@color/background_primary"
+            app:itemIconSize="24dp"
+            app:itemTextColor="@color/selector_bottom_nav_text_color"
+            app:labelVisibilityMode="labeled"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:menu="@menu/bottom_nav_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

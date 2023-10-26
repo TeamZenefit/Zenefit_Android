@@ -20,11 +20,22 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         initBinding()
+        initUi()
 
     }
 
     private fun initBinding() {
         binding.activity = this
+    }
+
+    private fun initUi() {
+        initBottomNav()
+    }
+
+    private fun initBottomNav() {
+        binding.mainLayoutBnv.apply {
+            itemIconTintList = null
+        }
     }
 
     fun openManualActivity() {
