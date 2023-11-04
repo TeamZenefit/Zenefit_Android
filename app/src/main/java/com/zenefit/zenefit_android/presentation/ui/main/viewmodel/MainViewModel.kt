@@ -13,20 +13,5 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(private val userRepository: UserRepository): ViewModel() {
-    private val _homeData = MutableLiveData<ResponseHomeData.ResultHomeData>()
-    val homeData : LiveData<ResponseHomeData.ResultHomeData> = _homeData
 
-    init {
-        requestHomeData()
-    }
-
-    private fun requestHomeData() {
-        viewModelScope.launch {
-            userRepository.requestHomeData()
-                .onSuccess {
-                    Log.e("----", "requestHomeData: $it", )
-                    _homeData.value = it }
-                .onFailure { Log.e("----", "requestHomeData: FAIL $it", ) }
-        }
-    }
 }

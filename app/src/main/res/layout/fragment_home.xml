@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.zenefit.zenefit_android.presentation.ui.main.viewmodel.MainViewModel" />
+            type="com.zenefit.zenefit_android.presentation.ui.main.home.viewmodel.HomeViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -230,6 +230,7 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
                     android:orientation="vertical"
+                    android:overScrollMode="never"
                     android:paddingHorizontal="16dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -246,10 +247,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@drawable/bg_secondary_16"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fg_home_layout_recommend_policy"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintTop_toBottomOf="@id/fg_home_layout_recommend_policy">
 
                 <TextView
                     android:id="@+id/fg_home_tv_deadline_policy_title"
@@ -286,6 +287,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:orientation="vertical"
+                    android:overScrollMode="never"
                     android:paddingHorizontal="16dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"

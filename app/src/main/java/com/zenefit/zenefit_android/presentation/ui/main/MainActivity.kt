@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.mainLayoutBnv.selectedItemId = R.id.bottom_nav_home
+
+        binding.mainLayoutBnv.setOnItemReselectedListener { return@setOnItemReselectedListener }
     }
 
     private fun returnTargetFragment(itemId : Int) : Fragment {
