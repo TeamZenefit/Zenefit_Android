@@ -9,3 +9,8 @@ import com.bumptech.glide.Glide
 fun ImageView.setImage(path : Any?) {
     Glide.with(this).load(path).into(this)
 }
+
+@BindingAdapter("circle_set_image")
+fun ImageView.setCircleImage(path : Any?) {
+    Glide.with(this).load(path).circleCrop().into(this)
+}

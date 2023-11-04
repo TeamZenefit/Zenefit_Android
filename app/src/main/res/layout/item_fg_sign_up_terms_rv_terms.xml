@@ -18,7 +18,6 @@
             android:id="@+id/item_fg_sign_up_terms_rv_terms_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
             android:background="@android:color/transparent"
             android:button="@android:color/transparent"
             android:drawableStart="@drawable/selector_terms_checkbox"
@@ -36,7 +35,7 @@
             android:id="@+id/item_fg_sign_up_terms_rv_terms_iv_see_terms"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_chevron_right"
+            android:src="@drawable/ic_chevron_right_24"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

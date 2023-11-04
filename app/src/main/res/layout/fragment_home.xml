@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.zenefit.zenefit_android.presentation.ui.main.viewmodel.MainViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background_primary">
+
+            <ImageView
+                android:id="@+id/fg_home_iv_upper_background"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/bg_home_over_profile"
+                app:layout_constraintDimensionRatio="1:0.32"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fg_home_tv_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
+                android:text="@{@string/home_user_nickname_level(viewModel.homeData.nickname, viewModel.homeData.nickname)}"
+                android:textAppearance="@style/font_title_1"
+
+                android:textColor="@color/text_strong"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fg_home_iv_upper_background" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fg_home_layout_progress_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_secondary_16"
+                app:layout_constraintTop_toBottomOf="@id/fg_home_tv_nickname">
+
+                <ProgressBar
+                    android:id="@+id/fg_home_progress_progress_bar"
+                    style="@style/HomeHorizontalProgressStyle"
+                    android:layout_margin="24dp"
+                    android:max="100"
+                    android:progress="80"
+                    android:progressDrawable="@drawable/bg_home_linear_progress"
+                    app:indicatorColor="@color/primary_normal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@{@string/dummy_grade(viewModel.homeData.benefit)}"
+                    android:textAppearance="@style/font_chips"
+                    android:textColor="@color/text_normal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/fg_home_progress_progress_bar"
+                    app:layout_constraintStart_toStartOf="@id/fg_home_progress_progress_bar"
+                    app:layout_constraintTop_toBottomOf="@id/fg_home_progress_progress_bar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                common_set_image="@{viewModel.homeData.userImage}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                app:layout_constraintBottom_toTopOf="@id/fg_home_layout_progress_card"
+                app:layout_constraintEnd_toEndOf="@id/fg_home_layout_progress_card" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fg_home_layout_interest_policy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/bg_secondary_8"
+                app:layout_constraintEnd_toStartOf="@id/fg_home_layout_benefit_policy"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fg_home_layout_progress_card">
+
+                <TextView
+                    android:id="@+id/fg_home_tv_interest_policy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/home_interest_policy"
+                    android:textAppearance="@style/font_label_5"
+                    android:textColor="@color/text_normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/fg_home_tv_interest_policy_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/home_policy_count"
+                    android:textAppearance="@style/font_label_1"
+                    android:textColor="@color/text_strong"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fg_home_tv_interest_policy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(viewModel.homeData.interestPolicyCnt)}"
+                    android:textAppearance="@style/font_title_1"
+                    android:textColor="@color/text_strong"
+                    app:layout_constraintBottom_toBottomOf="@id/fg_home_tv_interest_policy_amount"
+                    app:layout_constraintEnd_toStartOf="@id/fg_home_tv_interest_policy_amount" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fg_home_layout_benefit_policy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_secondary_8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/fg_home_layout_interest_policy"
+                app:layout_constraintTop_toBottomOf="@id/fg_home_layout_progress_card">
+
+                <TextView
+                    android:id="@+id/fg_home_tv_benefit_policy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/home_benefit_policy"
+                    android:textAppearance="@style/font_label_5"
+                    android:textColor="@color/text_normal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/fg_home_tv_benefit_policy_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/home_policy_count"
+                    android:textAppearance="@style/font_label_1"
+                    android:textColor="@color/text_strong"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fg_home_tv_benefit_policy" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{String.valueOf(viewModel.homeData.applyPolicyCnt)}"
+                    android:textAppearance="@style/font_title_1"
+                    android:textColor="@color/text_strong"
+                    app:layout_constraintBottom_toBottomOf="@id/fg_home_tv_benefit_policy_amount"
+                    app:layout_constraintEnd_toStartOf="@id/fg_home_tv_benefit_policy_amount" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fg_home_layout_recommend_policy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_secondary_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fg_home_layout_interest_policy">
+
+                <TextView
+                    android:id="@+id/fg_home_tv_recommend_policy_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="@string/home_recommend_policy"
+                    android:textAppearance="@style/font_label_2"
+                    android:textColor="@color/text_strong"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_chevron_rignt_26"
+                    app:layout_constraintBottom_toBottomOf="@id/fg_home_tv_recommend_policy_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fg_home_tv_recommend_policy_title" />
+
+                <View
+                    android:id="@+id/fg_home_view_recommend_policy_title_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/line_alternative"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fg_home_tv_recommend_policy_title" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fg_home_rv_recommend_policy"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fg_home_view_recommend_policy_title_divider"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_rv_home_recommend_policy_list" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fg_home_layout_deadline_policy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_secondary_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fg_home_layout_recommend_policy"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <TextView
+                    android:id="@+id/fg_home_tv_deadline_policy_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:text="@string/home_deadline_policy"
+                    android:textAppearance="@style/font_label_2"
+                    android:textColor="@color/text_strong"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_chevron_rignt_26"
+                    app:layout_constraintBottom_toBottomOf="@id/fg_home_tv_deadline_policy_title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/fg_home_tv_deadline_policy_title" />
+
+                <View
+                    android:id="@+id/fg_home_view_deadline_policy_title_divider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/line_alternative"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fg_home_tv_deadline_policy_title" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/fg_home_rv_deadline_policy"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="16dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/fg_home_view_deadline_policy_title_divider"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_rv_home_recommend_policy_list" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
