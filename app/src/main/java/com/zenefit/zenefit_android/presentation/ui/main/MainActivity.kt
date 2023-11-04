@@ -46,6 +46,8 @@ class MainActivity : AppCompatActivity() {
             returnTargetFragment(it.itemId).setFragment()
             return@setOnItemSelectedListener true
         }
+
+        binding.mainLayoutBnv.selectedItemId = R.id.bottom_nav_home
     }
 
     private fun returnTargetFragment(itemId : Int) : Fragment {

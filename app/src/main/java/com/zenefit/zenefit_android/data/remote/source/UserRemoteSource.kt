@@ -1,6 +1,7 @@
 package com.zenefit.zenefit_android.data.remote.source
 
 import com.zenefit.zenefit_android.data.remote.reqeust.RequestSignUpData
+import com.zenefit.zenefit_android.data.remote.response.ResponseHomeData
 import com.zenefit.zenefit_android.data.remote.response.ResponseSignInData
 import com.zenefit.zenefit_android.data.remote.service.UserService
 import com.zenefit.zenefit_android.domain.source.UserSource
@@ -28,6 +29,14 @@ class UserRemoteSource @Inject constructor(private val service : UserService): U
         val res = service.requestSignUp(body)
         return when(res.code()) {
             in 200..399 -> Result.success(res.body()!!)
+            else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
+        }
+    }
+
+    override suspend fun requestHomeData(): Result<ResponseHomeData.ResultHomeData> {
+        val res = service.requestHomeData()
+        return when(res.code()) {
+            in 200..399 -> Result.success(res.body()!!.result)
             else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
         }
     }

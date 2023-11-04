@@ -38,5 +38,18 @@
     <string name="manual_fifth_title">수혜중인 정책 관리</string>
     <string name="manual_fifth_sub_title">이미 수혜중이거나 신청을 완료한 정책은\n체크표시를 눌러 따로 모아 보세요!</string>
 
+    <!-- 홈 -->
+    <string name="home_user_nickname_level">%s님은\n%s에요</string>
+
+    <string name="dummy_grade">또래 친구들 중 상위 %d로 앞서 가고 있어요</string>
+
+    <string name="home_interest_policy">관심 등록</string>
+    <string name="home_benefit_policy">수혜 정책</string>
+    <string name="home_policy_count">개</string>
+
+    <string name="home_recommend_policy">정책 추천</string>
+    <string name="home_policy_apply">신청하기</string>
+    <string name="home_deadline_policy">신청 마감일</string>
+    <string name="home_deadline_until_date">%s 까지</string>
 
 </resources>
