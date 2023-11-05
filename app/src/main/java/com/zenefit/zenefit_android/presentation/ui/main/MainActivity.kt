@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initBinding() {
         binding.activity = this
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
     }
 
     private fun initUi() {
@@ -43,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.mainLayoutBnv.setOnItemSelectedListener {
-            returnTargetFragment(it.itemId).setFragment()
+            returnTargetFragment(it.itemId).also { viewModel.setCurrentFragmentName(it.javaClass.toString()) }.setFragment()
             return@setOnItemSelectedListener true
         }
 
@@ -55,7 +57,7 @@ class MainActivity : AppCompatActivity() {
     private fun returnTargetFragment(itemId : Int) : Fragment {
         return when(itemId) {
             R.id.bottom_nav_home -> HomeFragment()
-            R.id.bottom_nav_welfare -> PolicyFragment()
+            R.id.bottom_nav_welfare -> PolicyFragment().also { binding.mainTvTitle.text = "정책" }
             R.id.bottom_nav_calendar -> CalendarFragment()
             R.id.bottom_nav_my -> SettingFragment()
             else -> HomeFragment()

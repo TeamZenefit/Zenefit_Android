@@ -60,4 +60,7 @@
     <string name="interest_benefit_policy_count">%d개</string>
     <string name="interest_calendar_notice">관심 정책은 달력에도 추가됩니다.</string>
 
+    <!-- 정책 -->
+    <string name="monthly_benefit_money_apply">월 %s만원 신청하기</string>
+
 </resources>

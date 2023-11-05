@@ -14,4 +14,10 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(private val userRepository: UserRepository): ViewModel() {
 
+    private val _currentFragmentName = MutableLiveData<String>()
+    val currentFragmentName : LiveData<String> = _currentFragmentName
+
+    fun setCurrentFragmentName(name : String) {
+        _currentFragmentName.value = name
+    }
 }
