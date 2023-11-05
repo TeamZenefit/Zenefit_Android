@@ -3,6 +3,8 @@
 
     <string name="common_finish">완료</string>
     <string name="common_okay">확인</string>
+    <string name="common_delete">삭제하기</string>
+    <string name="common_delete_all">모두 삭제</string>
 
     <!-- 로그인 -->
     <string name="login_social_start">SNS 계정으로 간단하게 시작하기</string>
@@ -51,5 +53,11 @@
     <string name="home_policy_apply">신청하기</string>
     <string name="home_deadline_policy">신청 마감일</string>
     <string name="home_deadline_until_date">%s 까지</string>
+
+    <!-- 관심등록 & 수혜 정책 -->
+    <string name="interest_policy">관심 등록 중인 정책</string>
+    <string name="benefit_policy">수혜 중인 정책</string>
+    <string name="interest_benefit_policy_count">%d개</string>
+    <string name="interest_calendar_notice">관심 정책은 달력에도 추가됩니다.</string>
 
 </resources>
