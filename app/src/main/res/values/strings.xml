@@ -63,4 +63,7 @@
     <!-- 정책 -->
     <string name="monthly_benefit_money_apply">월 %s만원 신청하기</string>
 
+    <!-- 정책 리스트 -->
+    <string name="policy_list_edt_hint">찾으시려는 복지를 검색하세요.</string>
+
 </resources>

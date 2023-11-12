@@ -87,4 +87,18 @@
         <item name="lineHeight">14dp</item>
     </style>
 
+    <style name="policy_list_chip_text" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/pretendard_semibold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">24dp</item>
+        <item name="android:textColor">@color/selector_policy_list_chip_text</item>
+    </style>
+
+    <style name="policy_list_filter_chip_text" parent="Widget.AppCompat.TextView">
+        <item name="fontFamily">@font/pretendard_regular</item>
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">24dp</item>
+        <item name="android:textColor">@color/selector_policy_list_filter_chip_text</item>
+    </style>
+
 </resources>

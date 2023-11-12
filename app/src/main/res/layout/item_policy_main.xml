@@ -144,6 +144,7 @@
                 tools:text="월 n만원 신청하기"/>
 
             <ImageView
+                android:id="@+id/item_policy_main_btn_calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_stroke_primary_assistive_8"

@@ -3,6 +3,7 @@ package com.zenefit.zenefit_android.data.remote.repository
 import com.zenefit.zenefit_android.data.remote.reqeust.RequestSignUpData
 import com.zenefit.zenefit_android.data.remote.response.ResponseHomeData
 import com.zenefit.zenefit_android.data.remote.response.ResponseSignInData
+import com.zenefit.zenefit_android.data.remote.response.ResponseUserPolicyCountData
 import com.zenefit.zenefit_android.domain.repository.UserRepository
 import com.zenefit.zenefit_android.domain.source.UserSource
 import javax.inject.Inject
@@ -22,5 +23,13 @@ class UserRepositoryImpl @Inject constructor(private val source : UserSource): U
 
     override suspend fun requestHomeData(): Result<ResponseHomeData.ResultHomeData> {
         return source.requestHomeData()
+    }
+
+    override suspend fun requestInterestPolicyCount(): Result<ResponseUserPolicyCountData.ResultUserPolicyCountData> {
+        return source.requestInterestPolicyCount()
+    }
+
+    override suspend fun requestBenefitPolicyCount(): Result<ResponseUserPolicyCountData.ResultUserPolicyCountData> {
+        return source.requestBenefitPolicyCount()
     }
 }

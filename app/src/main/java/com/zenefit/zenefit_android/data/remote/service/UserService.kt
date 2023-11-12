@@ -4,6 +4,7 @@ import com.zenefit.zenefit_android.data.remote.reqeust.RequestSignUpData
 import com.zenefit.zenefit_android.data.remote.response.ResponseAreaData
 import com.zenefit.zenefit_android.data.remote.response.ResponseHomeData
 import com.zenefit.zenefit_android.data.remote.response.ResponseSignInData
+import com.zenefit.zenefit_android.data.remote.response.ResponseUserPolicyCountData
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -28,4 +29,10 @@ interface UserService {
 
     @GET("/user/home")
     suspend fun requestHomeData() : Response<ResponseHomeData>
+
+    @GET("/user/policy/size")
+    suspend fun requestInterestPolicyCountData() : Response<ResponseUserPolicyCountData>
+
+    @GET("/user/policy/apply/size")
+    suspend fun requestBenefitPolicyCountData() : Response<ResponseUserPolicyCountData>
 }

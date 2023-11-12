@@ -89,7 +89,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="12dp"
-                android:text="n개"
+                android:text="@{@string/interest_benefit_policy_count(viewModel.policyCount)}"
                 android:textAppearance="@style/font_body_2"
                 android:textColor="@color/text_normal"
                 android:visibility="@{viewModel.writeStatus ? View.GONE : View.VISIBLE }"

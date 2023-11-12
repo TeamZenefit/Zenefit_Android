@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="fragment"
+            type="com.zenefit.zenefit_android.presentation.ui.main.policy_list.PolicyListFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.zenefit.zenefit_android.presentation.ui.main.policy_list.viewmodel.PolicyListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fg_policy_list_layout_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_normal_99"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/fg_policy_list_iv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:background="@android:color/transparent"
+                android:hint="@string/policy_list_edt_hint"
+                android:text="@={viewModel.searchText}"
+                android:textAppearance="@style/font_body_1"
+                android:textColor="@color/text_normal"
+                android:textColorHint="@color/text_alternative"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/fg_policy_list_iv_search"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/fg_policy_list_layout_chip_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_policy_list_layout_search">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/fg_policy_list_chipgroup_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:clipToPadding="true"
+                android:paddingStart="16dp"
+                app:singleLine="true" />
+
+        </HorizontalScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fg_policy_list_layout_open_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+
+            android:layout_marginEnd="16dp"
+
+            android:background="@drawable/bg_normal_99"
+            android:onClick="@{() -> viewModel.changeFilterDrawerState()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_policy_list_layout_chip_scroll">
+
+            <ImageView
+                android:id="@+id/fg_policy_list_iv_filter_dropdown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="6dp"
+                android:layout_marginEnd="12dp"
+                android:src="@{viewModel.isFilterDrawerOpened ? @drawable/ic_chevron_up : @drawable/ic_chevron_down}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/fg_policy_list_tv_selected_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="12dp"
+
+                android:layout_marginEnd="8dp"
+                android:text='@{viewModel.currentSelectedFilter.contains("benefit") ? "수혜금액" : "마감순"}'
+                android:textAppearance="@style/font_body_2"
+                android:textColor="@{viewModel.isFilterDrawerOpened ? @color/text_normal : @color/text_alternative}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/fg_policy_list_iv_filter_dropdown"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fg_policy_list_layout_filter"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_marginTop="8dp"
+            android:background="@color/background_primary"
+            android:visibility="@{viewModel.isFilterDrawerOpened ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@id/fg_policy_list_layout_open_filter">
+
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="12dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:checked='@{viewModel.currentSelectedFilter.contains("benefit") ? true : false}'
+                    android:onClick='@{()->viewModel.setCurrentSelectedFilter("benefit")}'
+                    android:text="수혜금액"
+                    android:textAppearance="@style/font_body_2"
+                    android:textColor="@color/selector_policy_list_filter_chip_text"
+                    app:chipBackgroundColor="@color/selector_policy_list_filter_chip_background_color"
+                    app:chipCornerRadius="50dp"
+                    app:chipStrokeColor="@color/selector_policy_list_filter_chip_stroke_color" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checkable="true"
+                    android:checked='@{viewModel.currentSelectedFilter.contains("benefit") ? false : true}'
+                    android:onClick='@{()->viewModel.setCurrentSelectedFilter("desc")}'
+                    android:text="마감순"
+                    android:textAppearance="@style/font_body_2"
+                    android:textColor="@color/selector_policy_list_filter_chip_text"
+                    app:chipBackgroundColor="@color/selector_policy_list_filter_chip_background_color"
+                    app:chipCornerRadius="50dp"
+                    app:chipStrokeColor="@color/selector_policy_list_filter_chip_stroke_color" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fg_policy_list_rv_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fg_policy_list_layout_filter" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

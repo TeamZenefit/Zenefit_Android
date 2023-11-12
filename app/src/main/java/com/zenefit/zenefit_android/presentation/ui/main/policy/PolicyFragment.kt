@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment
 import com.zenefit.zenefit_android.R
 import com.zenefit.zenefit_android.data.data.DummyPolicy
 import com.zenefit.zenefit_android.databinding.FragmentPolicyBinding
+import com.zenefit.zenefit_android.presentation.ui.main.MainActivity
 import com.zenefit.zenefit_android.presentation.ui.main.policy.adapter.PolicyAdapter
+import com.zenefit.zenefit_android.presentation.util.CustomSnackBar
 
 class PolicyFragment : Fragment() {
     private lateinit var binding : FragmentPolicyBinding
     private val policyAdapter by lazy {
-        PolicyAdapter(policyDummy())
+        PolicyAdapter(::onCalendarClicked, ::onListOpenClicked, ::onDetailOpenClicked, policyDummy())
     }
 
     override fun onCreateView(
@@ -31,6 +33,18 @@ class PolicyFragment : Fragment() {
 
     private fun initUi() {
         binding.fgPolicyRvContent.adapter = policyAdapter
+    }
+
+    private fun onListOpenClicked(type : String) {
+        (requireActivity() as MainActivity).setDetailFragments(type)
+    }
+
+    private fun onDetailOpenClicked(policyId : Int) {
+
+    }
+
+    private fun onCalendarClicked() {
+        CustomSnackBar.makeSnackBar(binding.root, "ADD_CALENDAR").show()
     }
 
     /** Dummy **/

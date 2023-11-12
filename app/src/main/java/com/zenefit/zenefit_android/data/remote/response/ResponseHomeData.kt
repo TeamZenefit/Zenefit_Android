@@ -8,15 +8,17 @@ data class ResponseHomeData (
 
     data class ResultHomeData(
         val nickname : String,
-        val userImage : String,
-        val benefit : Int,
+        val characterImage : String,
+        val description : String,
         val interestPolicyCnt : Int,
         val applyPolicyCnt : Int,
         val recommendPolicy : List<ResponseHomePolicyListData>?,
         val endDatePolicy : List<ResponseHomePolicyListData>?
     )
     data class ResponseHomePolicyListData(
+        val policyId : Int,
         val policyName : String,
+        val policyLogo : String,
         val supportPolicyType : String,
         val supportPolicyTypeName : String,
 

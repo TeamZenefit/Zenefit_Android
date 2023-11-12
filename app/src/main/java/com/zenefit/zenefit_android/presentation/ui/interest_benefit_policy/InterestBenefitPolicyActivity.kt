@@ -8,7 +8,9 @@ import com.zenefit.zenefit_android.R
 import com.zenefit.zenefit_android.databinding.ActivityInterestBenefitPolicyBinding
 import com.zenefit.zenefit_android.presentation.ui.interest_benefit_policy.adapter.InterestBenefitPolicyAdapter
 import com.zenefit.zenefit_android.presentation.ui.interest_benefit_policy.viewmodel.InterestBenefitPolicyViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InterestBenefitPolicyActivity : AppCompatActivity() {
     private lateinit var binding : ActivityInterestBenefitPolicyBinding
     private val viewModel : InterestBenefitPolicyViewModel by viewModels()
