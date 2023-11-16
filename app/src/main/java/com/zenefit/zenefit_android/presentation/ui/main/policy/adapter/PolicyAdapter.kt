@@ -16,6 +16,8 @@ class PolicyAdapter(
         fun bind(item : DummyPolicy) {
             binding.data = item
 
+            binding.root.setOnClickListener { onDetailOpenClicked.invoke(0) }
+
             binding.itemPolicyMainTvTitle.setOnClickListener { onListOpenClicked.invoke(item.supportPolicyType) }
             binding.itemPolicyMainBtnCalendar.setOnClickListener { onCalendarClicked.invoke() }
         }

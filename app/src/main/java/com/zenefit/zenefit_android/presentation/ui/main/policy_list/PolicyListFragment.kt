@@ -1,5 +1,6 @@
 package com.zenefit.zenefit_android.presentation.ui.main.policy_list
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,13 +18,14 @@ import com.zenefit.zenefit_android.data.data.DummyPolicy
 import com.zenefit.zenefit_android.databinding.FragmentPolicyListBinding
 import com.zenefit.zenefit_android.presentation.ui.main.policy_list.adapter.PolicyListAdapter
 import com.zenefit.zenefit_android.presentation.ui.main.policy_list.viewmodel.PolicyListViewModel
+import com.zenefit.zenefit_android.presentation.ui.policy_detail.PolicyDetailActivity
 import com.zenefit.zenefit_android.presentation.util.CustomSnackBar
 
 class PolicyListFragment(private val type : String) : Fragment() {
     private lateinit var binding : FragmentPolicyListBinding
     private val viewModel : PolicyListViewModel by viewModels()
     private val policyListAdapter by lazy {
-        PolicyListAdapter(::showSnackBarWithCalendar, policyDummy())
+        PolicyListAdapter(::onOpenDetail, ::showSnackBarWithCalendar, policyDummy())
     }
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -64,7 +66,6 @@ class PolicyListFragment(private val type : String) : Fragment() {
                 check(this)
             }
         }
-
     }
 
     private fun String.makeChip() : Chip {
@@ -88,6 +89,10 @@ class PolicyListFragment(private val type : String) : Fragment() {
     private fun showSnackBarWithCalendar() {
         CustomSnackBar.makeSnackBar(binding.root, "ADD_CALENDAR").show()
         //.also { it.animationMode = Snackbar.ANIMATION_MODE_SLIDE}
+    }
+
+    private fun onOpenDetail() {
+        startActivity(Intent(requireActivity(), PolicyDetailActivity::class.java).setType("CANT"))
     }
 
     /** Dummy **/

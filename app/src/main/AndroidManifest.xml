@@ -57,6 +57,10 @@
         <activity android:name=".presentation.ui.interest_benefit_policy.InterestBenefitPolicyActivity"
             android:exported="false" />
 
+        <!-- POLICY DETAIL -->
+        <activity android:name=".presentation.ui.policy_detail.PolicyDetailActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>

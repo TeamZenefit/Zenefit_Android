@@ -9,12 +9,14 @@ import com.zenefit.zenefit_android.databinding.ItemPolicyMainBinding
 import com.zenefit.zenefit_android.databinding.ItemRvPolicyDetailContentBinding
 
 class PolicyListAdapter(
+    private val onDetailClicked : () -> Unit,
     private val onCalendarClicked : () -> Unit,
     private val policyDummy : List<DummyPolicy>) : RecyclerView.Adapter<PolicyListAdapter.PolicyViewHolder>() {
     inner class PolicyViewHolder(private val binding : ItemRvPolicyDetailContentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : DummyPolicy) {
             binding.data = item
 
+            binding.root.setOnClickListener { onDetailClicked.invoke() }
             binding.itemPolicyListBtnCalendar.setOnClickListener { onCalendarClicked.invoke() }
         }
     }

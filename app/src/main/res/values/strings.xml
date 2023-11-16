@@ -66,4 +66,17 @@
     <!-- 정책 리스트 -->
     <string name="policy_list_edt_hint">찾으시려는 복지를 검색하세요.</string>
 
+    <!-- 정책 상세 -->
+    <string name="policy_detail_benefit_title_when_can_apply">%s을 신청하면\n월 %d만원 정도를 받을 수 있어요</string>
+    <string name="policy_detail_benefit_title_when_cant_apply">%s은 신청할 수 없어요</string>
+    <string name="policy_detail_introduction">서비스 소개</string>
+    <string name="policy_detail_apply_documents">신청 서류</string>
+    <string name="policy_detail_apply_method">신청 방법</string>
+    <string name="policy_detail_apply_date">신청 기간</string>
+
+    <string name="apply_now">지금 신청하기</string>
+    <string name="see_more_detail">상세 조회</string>
+    <string name="add_to_interest_policy">관심 정책 등록하기</string>
+    <string name="already_in_interest_policy">관심 정책 등록완료</string>
+
 </resources>

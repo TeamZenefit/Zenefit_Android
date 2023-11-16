@@ -14,7 +14,7 @@ import com.zenefit.zenefit_android.databinding.ComponentToastBinding
 object CustomSnackBar {
 
     fun makeSnackBar(view: View, message: String): Snackbar {
-        val snackBar = Snackbar.make(view, message, 2000)
+        val snackBar = Snackbar.make(view, message, 800)
 
         val binding = DataBindingUtil.inflate<ComponentToastBinding>(
             LayoutInflater.from(view.context),

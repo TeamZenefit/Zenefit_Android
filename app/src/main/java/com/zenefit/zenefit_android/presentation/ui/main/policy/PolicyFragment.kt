@@ -1,5 +1,6 @@
 package com.zenefit.zenefit_android.presentation.ui.main.policy
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.zenefit.zenefit_android.data.data.DummyPolicy
 import com.zenefit.zenefit_android.databinding.FragmentPolicyBinding
 import com.zenefit.zenefit_android.presentation.ui.main.MainActivity
 import com.zenefit.zenefit_android.presentation.ui.main.policy.adapter.PolicyAdapter
+import com.zenefit.zenefit_android.presentation.ui.policy_detail.PolicyDetailActivity
 import com.zenefit.zenefit_android.presentation.util.CustomSnackBar
 
 class PolicyFragment : Fragment() {
@@ -40,7 +42,7 @@ class PolicyFragment : Fragment() {
     }
 
     private fun onDetailOpenClicked(policyId : Int) {
-
+        startActivity(Intent(requireActivity(), PolicyDetailActivity::class.java).setType("CAN"))
     }
 
     private fun onCalendarClicked() {

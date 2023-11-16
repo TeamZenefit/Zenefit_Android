@@ -9,6 +9,8 @@ data class ResponseHomeData (
     data class ResultHomeData(
         val nickname : String,
         val characterImage : String,
+        val characterNickname : String,
+        val characterPercent : Int,
         val description : String,
         val interestPolicyCnt : Int,
         val applyPolicyCnt : Int,

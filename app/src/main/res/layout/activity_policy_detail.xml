@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="policyData"
+            type="com.zenefit.zenefit_android.data.data.DummyPolicyDetail" />
+
+        <variable
+            name="viewModel"
+            type="com.zenefit.zenefit_android.presentation.ui.policy_detail.viewmodel.PolicyDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_secondary">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/policy_detail_layout_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_chevron_left"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/policy_detail_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:bufferType="spannable"
+            android:textAppearance="@style/font_label_1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_layout_toolbar" />
+
+        <TextView
+            android:id="@+id/policy_detail_tv_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="@{policyData.cantReason}"
+            android:textAppearance="@style/font_body_1"
+            android:textColor="@color/text_alternative"
+            android:visibility='@{viewModel.type.contains("CANT") ? View.VISIBLE : View.GONE}'
+            app:layout_constraintStart_toStartOf="@id/policy_detail_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_tv_title" />
+
+        <TextView
+            android:id="@+id/policy_detail_tv_introduction_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/policy_detail_introduction"
+            android:textAppearance="@style/font_label_3"
+            android:textColor="@color/text_strong"
+            app:layout_constraintStart_toStartOf="@id/policy_detail_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_tv_reason" />
+
+        <TextView
+            android:id="@+id/policy_detail_tv_introduction"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{policyData.introduction}"
+            android:textAppearance="@style/font_body_1"
+            android:textColor="@color/text_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/policy_detail_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_tv_introduction_title" />
+
+        <View
+            android:id="@+id/policy_detail_divider_introduction_documents"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/line_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_tv_introduction" />
+
+        <TextView
+            android:id="@+id/policy_detail_tv_apply_documents_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/policy_detail_apply_documents"
+            android:textAppearance="@style/font_label_3"
+            android:textColor="@color/text_strong"
+            app:layout_constraintStart_toStartOf="@id/policy_detail_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_divider_introduction_documents" />
+
+        <TextView
+            android:id="@+id/policy_detail_tv_apply_documents"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{policyData.applyDocuments}"
+            android:textAppearance="@style/font_body_1"
+            android:textColor="@color/text_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/policy_detail_tv_apply_documents_title"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_tv_apply_documents_title" />
+
+        <View
+            android:id="@+id/policy_detail_divider_documents_method"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/line_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_tv_apply_documents" />
+
+        <TextView
+            android:id="@+id/policy_detail_tv_apply_method_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/policy_detail_apply_method"
+            android:textAppearance="@style/font_label_3"
+            android:textColor="@color/text_strong"
+            app:layout_constraintStart_toStartOf="@id/policy_detail_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_divider_documents_method" />
+
+        <TextView
+            android:id="@+id/policy_detail_tv_apply_method"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{policyData.applyMethod}"
+            android:textAppearance="@style/font_body_1"
+            android:textColor="@color/text_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/policy_detail_tv_apply_method_title"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_tv_apply_method_title" />
+
+        <View
+            android:id="@+id/policy_detail_divider_method_date"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/line_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_tv_apply_method" />
+
+        <TextView
+            android:id="@+id/policy_detail_tv_apply_date_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/policy_detail_apply_date"
+            android:textAppearance="@style/font_label_3"
+            android:textColor="@color/text_strong"
+            app:layout_constraintStart_toStartOf="@id/policy_detail_tv_title"
+            app:layout_constraintTop_toBottomOf="@id/policy_detail_divider_method_date" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/bg_primary_normal_8"
+            android:gravity="center"
+            android:paddingVertical="12dp"
+            android:text="@string/apply_now"
+            android:textAppearance="@style/font_label_3"
+            android:textColor="@color/white"
+            android:visibility='@{viewModel.type.contains("CANT") ? View.GONE : View.VISIBLE}'
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="40dp"
+            android:orientation="horizontal"
+            android:visibility='@{viewModel.type.contains("CANT") ? View.VISIBLE : View.GONE}'
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_primary_assistive_8"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:text="@string/see_more_detail"
+                android:textAppearance="@style/font_label_3"
+                android:textColor="@color/primary_normal" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_primary_normal_8"
+                android:gravity="center"
+                android:paddingVertical="12dp"
+                android:text="@string/add_to_interest_policy"
+                android:textAppearance="@style/font_label_3"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
