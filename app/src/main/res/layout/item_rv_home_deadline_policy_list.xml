@@ -51,7 +51,7 @@
             android:id="@+id/item_rv_home_deadline_policy_list_btn_apply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_primary_assistive_99"
+            android:background="@drawable/bg_secondary_assistive_99"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" >

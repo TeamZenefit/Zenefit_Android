@@ -1,5 +1,6 @@
 package com.zenefit.zenefit_android.presentation.ui.main.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,19 +9,22 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.zenefit.zenefit_android.R
 import com.zenefit.zenefit_android.data.remote.response.ResponseHomeData
 import com.zenefit.zenefit_android.data.remote.response.ResponsePolicyCountData
 import com.zenefit.zenefit_android.databinding.FragmentHomeBinding
+import com.zenefit.zenefit_android.presentation.ui.interest_benefit_policy.InterestBenefitPolicyActivity
 import com.zenefit.zenefit_android.presentation.ui.main.home.adapter.HomePolicyDeadlineAdapter
 import com.zenefit.zenefit_android.presentation.ui.main.home.adapter.HomePolicyRecommendAdapter
+import com.zenefit.zenefit_android.presentation.ui.main.home.viewmodel.HomeViewModel
 import com.zenefit.zenefit_android.presentation.ui.main.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
     private lateinit var binding : FragmentHomeBinding
-    private val viewModel : MainViewModel by activityViewModels()
+    private val viewModel : HomeViewModel by viewModels()
 
     private val recommendPolicyAdapter by lazy {
         HomePolicyRecommendAdapter(::onRecommendApplyClicked)
@@ -45,6 +49,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initBinding() {
+        binding.fragment = this
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
     }
@@ -93,6 +98,10 @@ class HomeFragment : Fragment() {
             policyList = this@setDeadlineData as MutableList
             notifyItemRangeChanged(0, this@setDeadlineData.size)
         }
+    }
+
+    fun onMyPolicyClicked(type : String) {
+        startActivity(Intent(requireActivity(), InterestBenefitPolicyActivity::class.java).setType(type))
     }
 
 }

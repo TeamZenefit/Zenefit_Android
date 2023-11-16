@@ -3,6 +3,7 @@ package com.zenefit.zenefit_android.data.remote.source
 import com.zenefit.zenefit_android.data.remote.reqeust.RequestSignUpData
 import com.zenefit.zenefit_android.data.remote.response.ResponseHomeData
 import com.zenefit.zenefit_android.data.remote.response.ResponseSignInData
+import com.zenefit.zenefit_android.data.remote.response.ResponseUserPolicyCountData
 import com.zenefit.zenefit_android.data.remote.service.UserService
 import com.zenefit.zenefit_android.domain.source.UserSource
 import com.zenefit.zenefit_android.presentation.util.ErrorConverter.convertError
@@ -35,6 +36,22 @@ class UserRemoteSource @Inject constructor(private val service : UserService): U
 
     override suspend fun requestHomeData(): Result<ResponseHomeData.ResultHomeData> {
         val res = service.requestHomeData()
+        return when(res.code()) {
+            in 200..399 -> Result.success(res.body()!!.result)
+            else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
+        }
+    }
+
+    override suspend fun requestInterestPolicyCount(): Result<ResponseUserPolicyCountData.ResultUserPolicyCountData> {
+        val res = service.requestInterestPolicyCountData()
+        return when(res.code()) {
+            in 200..399 -> Result.success(res.body()!!.result)
+            else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
+        }
+    }
+
+    override suspend fun requestBenefitPolicyCount(): Result<ResponseUserPolicyCountData.ResultUserPolicyCountData> {
+        val res = service.requestBenefitPolicyCountData()
         return when(res.code()) {
             in 200..399 -> Result.success(res.body()!!.result)
             else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
