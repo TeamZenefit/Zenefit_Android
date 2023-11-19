@@ -5,8 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import com.zenefit.zenefit_android.data.remote.response.ResponseUserPolicyData
 import com.zenefit.zenefit_android.domain.repository.UserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -21,29 +24,54 @@ class InterestBenefitPolicyViewModel @Inject constructor(private val userReposit
     private val _policyCount = MutableLiveData<Int>()
     val policyCount : LiveData<Int> = _policyCount
 
+    private val _deleteResponseStatus = MutableLiveData<Boolean>()
+    val deleteResponseStatus : LiveData<Boolean> = _deleteResponseStatus
+
     fun setActivityType(type : String) {
         _type.value = type
-
-        if(type.contains("Interest")) requestInterestPolicyCount() else requestBenefitPolicyCount()
     }
 
     fun changeWriteStatus() {
         _writeStatus.value = writeStatus.value?.not()
     }
 
-    private fun requestInterestPolicyCount() {
+    fun requestInterestPolicyList() : Flow<PagingData<ResponseUserPolicyData.ResultUserPolicyData>> {
+        return userRepository.requestInterestPolicy()
+    }
+
+    fun requestInterestPolicyCount() {
         viewModelScope.launch {
             userRepository.requestInterestPolicyCount()
-                .onSuccess { _policyCount.value = it.size
-                    Log.e("----", "requestInterestPolicyCount: $it", )}
-                .onFailure { Log.e("----", "requestInterestPolicyCount: ${it.message}", ) }
+                .onSuccess { _policyCount.value = it.size }
+                .onFailure { it.printStackTrace() }
         }
     }
 
-    private fun requestBenefitPolicyCount() {
+    fun requestBenefitPolicyList() : Flow<PagingData<ResponseUserPolicyData.ResultUserPolicyData>> {
+        return userRepository.requestBenefitPolicy()
+    }
+
+    fun requestBenefitPolicyCount() {
         viewModelScope.launch {
             userRepository.requestBenefitPolicyCount()
                 .onSuccess { _policyCount.value = it.size }
+                .onFailure { it.printStackTrace() }
+        }
+    }
+
+    fun requestRemoveInterestPolicy(policyId : Int) {
+        viewModelScope.launch {
+            userRepository.requestDeleteInterestPolicy(policyId)
+                .onSuccess { _deleteResponseStatus.value = it.isSuccess }
+                .onFailure { it.printStackTrace() }
+        }
+    }
+
+    fun requestRemoveBenefitPolicy(policyId : Int) {
+        viewModelScope.launch {
+            userRepository.requestDeleteBenefitPolicy(policyId)
+                .onSuccess { _deleteResponseStatus.value = it.isSuccess }
+                .onFailure { it.printStackTrace() }
         }
     }
 }

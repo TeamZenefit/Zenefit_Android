@@ -4,7 +4,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_16">
 
         <TextView
             android:id="@+id/dialog_two_button_tv_title"
@@ -12,6 +13,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="@style/font_label_3"
             android:textColor="@color/text_strong"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

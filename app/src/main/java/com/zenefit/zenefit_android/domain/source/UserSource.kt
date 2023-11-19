@@ -4,6 +4,7 @@ import com.zenefit.zenefit_android.data.remote.reqeust.RequestSignUpData
 import com.zenefit.zenefit_android.data.remote.response.ResponseHomeData
 import com.zenefit.zenefit_android.data.remote.response.ResponseSignInData
 import com.zenefit.zenefit_android.data.remote.response.ResponseUserPolicyCountData
+import com.zenefit.zenefit_android.presentation.util.BaseResponse
 
 interface UserSource {
 
@@ -17,5 +18,9 @@ interface UserSource {
 
     suspend fun requestInterestPolicyCount() : Result<ResponseUserPolicyCountData.ResultUserPolicyCountData>
 
+    suspend fun requestDeleteInterestPolicy(policyId : Int) : Result<BaseResponse>
+
     suspend fun requestBenefitPolicyCount() : Result<ResponseUserPolicyCountData.ResultUserPolicyCountData>
+
+    suspend fun requestDeleteBenefitPolicy(policyId : Int) : Result<BaseResponse>
 }
