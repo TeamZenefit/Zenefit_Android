@@ -10,6 +10,18 @@
         <variable
             name="deleteStatus"
             type="Boolean" />
+
+        <variable
+            name="data"
+            type="com.zenefit.zenefit_android.data.remote.response.ResponseUserPolicyData.ResultUserPolicyData" />
+
+        <variable
+            name="deadline"
+            type="String" />
+
+        <variable
+            name="benefit"
+            type="Integer" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +35,7 @@
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_margin="16dp"
-
+            common_set_image="@{data.policyLogo}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -32,12 +44,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
-            android:text="정책 이름"
+            android:text="@{data.policyName}"
 
             android:textAppearance="@style/font_label_2"
             android:textColor="@color/text_normal"
             android:layout_marginHorizontal="8dp"
             android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintTop_toTopOf="@id/item_rv_interest_benefit_content_iv_company"
             app:layout_constraintBottom_toBottomOf="@id/item_rv_interest_benefit_content_iv_company"
             app:layout_constraintStart_toEndOf="@id/item_rv_interest_benefit_content_iv_company"
@@ -49,7 +62,7 @@
             android:layout_height="wrap_content"
 
             android:background="@{deleteStatus ? @drawable/bg_alert_99 : @drawable/bg_secondary_assistive_99}"
-            android:text='@{deleteStatus ? "삭제하기" : (type.contains("Interest") ? "00/00까지" : "n만원")}'
+            android:text='@{deleteStatus ? "삭제하기" : (type.contains("Interest") ? @string/interest_policy_deadline(deadline) : @string/benefit_policy_benefit(benefit))}'
             android:textColor="@{deleteStatus ? @color/white : @color/secondary_normal}"
 
             android:textAppearance="@style/font_label_5"
@@ -65,7 +78,7 @@
             android:layout_height="wrap_content"
             android:maxLines="2"
 
-            android:text="정책 정보입니다. 정책 정보는 대략 2줄로 구성할 예정입니다. 정책 정보입니다. 정책 정보는 대략 2줄로 구성정책 정보입니다. 정책 정보는 대략 2줄로 구성할 예정입니다. 정책 정보입니다. 정책 정보는 대략 2줄로 구성"
+            android:text="@{data.policyIntroduction}"
 
             android:textAppearance="@style/font_body_2"
             android:textColor="@color/text_normal"

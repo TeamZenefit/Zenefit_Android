@@ -6,6 +6,7 @@ import com.zenefit.zenefit_android.data.remote.response.ResponseSignInData
 import com.zenefit.zenefit_android.data.remote.response.ResponseUserPolicyCountData
 import com.zenefit.zenefit_android.data.remote.service.UserService
 import com.zenefit.zenefit_android.domain.source.UserSource
+import com.zenefit.zenefit_android.presentation.util.BaseResponse
 import com.zenefit.zenefit_android.presentation.util.ErrorConverter.convertError
 import javax.inject.Inject
 
@@ -50,10 +51,26 @@ class UserRemoteSource @Inject constructor(private val service : UserService): U
         }
     }
 
+    override suspend fun requestDeleteInterestPolicy(policyId : Int): Result<BaseResponse> {
+        val res = service.requestDeleteInterestPolicy(policyId)
+        return when(res.code()) {
+            in 200..399 -> Result.success(res.body()!!)
+            else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
+        }
+    }
+
     override suspend fun requestBenefitPolicyCount(): Result<ResponseUserPolicyCountData.ResultUserPolicyCountData> {
         val res = service.requestBenefitPolicyCountData()
         return when(res.code()) {
             in 200..399 -> Result.success(res.body()!!.result)
+            else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
+        }
+    }
+
+    override suspend fun requestDeleteBenefitPolicy(policyId : Int): Result<BaseResponse> {
+        val res = service.requestDeleteBenefitPolicy(policyId)
+        return when(res.code()) {
+            in 200..399 -> Result.success(res.body()!!)
             else -> Result.failure(IllegalArgumentException(res.errorBody()?.string()))
         }
     }

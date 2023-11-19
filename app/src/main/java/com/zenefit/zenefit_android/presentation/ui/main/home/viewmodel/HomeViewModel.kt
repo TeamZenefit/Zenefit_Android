@@ -17,11 +17,7 @@ class HomeViewModel @Inject constructor(private val userRepository: UserReposito
     private val _homeData = MutableLiveData<ResponseHomeData.ResultHomeData>()
     val homeData : LiveData<ResponseHomeData.ResultHomeData> = _homeData
 
-    init {
-        requestHomeData()
-    }
-
-    private fun requestHomeData() {
+    fun requestHomeData() {
         viewModelScope.launch {
             userRepository.requestHomeData()
                 .onSuccess { _homeData.value = it }

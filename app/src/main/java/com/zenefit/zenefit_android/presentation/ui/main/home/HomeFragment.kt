@@ -104,4 +104,9 @@ class HomeFragment : Fragment() {
         startActivity(Intent(requireActivity(), InterestBenefitPolicyActivity::class.java).setType(type))
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.requestHomeData()
+    }
+
 }
